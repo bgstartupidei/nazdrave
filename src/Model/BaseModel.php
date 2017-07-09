@@ -8,11 +8,16 @@ class BaseModel {
 
     protected $ci;
     protected $db;
+    protected $tableName;
 
     //Constructor
     public function __construct(Container $ci) {
         $this->ci = $ci;
         $this->db = $ci->get('db');
+    }
+
+    public function getTableName() {
+        return $this->tableName;
     }
 
     public function get($table, $id, $column = 'id') {

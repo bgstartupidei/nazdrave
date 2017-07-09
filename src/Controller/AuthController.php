@@ -33,7 +33,7 @@ class AuthController extends BaseController {
                     $this->session->set('email', $user->email);
                     $this->session->set('level', $user->level);
                     // set cookie
-                    return $response->withRedirect('/user');
+                    return $response->withRedirect('/user/home');
                 }
                 $this->data['errors'] = [__('Невалидни email/парола')];
             } else {

@@ -29,6 +29,7 @@ class Drink extends AbstractMigration
     {
         $table = $this->table('drink');
         $table->addColumn('producer_id', 'integer')
+              ->addColumn('barcode', 'string', array('limit' => 45))
               ->addColumn('name', 'string', array('limit' => 255))
               ->addColumn('url', 'string', array('limit' => 255))
               ->addColumn('image', 'string', array('limit' => 100))

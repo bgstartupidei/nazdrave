@@ -1,0 +1,17 @@
+{% extends "_layout/base.html" %}
+
+{% block canonical %}{{domain_name}}/drink/{{ item.id }}/{{ item.title|slugify }}{% endblock %}
+
+{% block content %}
+  <h2>{{ item.name|escape }}</h2>
+  {% if logged %}
+    <form method="post">
+      <button type="submit" class="btn btn-primary">Сипи си</button>
+    </form>
+  {% endif %}
+  <div class="row">
+    <div class="col-sm-12">
+      <p>{{ item.description|escape }}</p>
+    </div>
+  </div>
+{% endblock %}

@@ -79,6 +79,18 @@ $container['HomeController'] = function ($container) {
 $container['AuthController'] = function ($container) {
     return new \Nazdrave\Controller\AuthController($container);
 };
+$container['DrinkController'] = function ($container) {
+    return new \Nazdrave\Controller\DrinkController($container);
+};
+$container['VenueController'] = function ($container) {
+    return new \Nazdrave\Controller\VenueController($container);
+};
+$container['ProducerController'] = function ($container) {
+    return new \Nazdrave\Controller\ProducerController($container);
+};
+$container['UserController'] = function ($container) {
+    return new \Nazdrave\Controller\UserController($container);
+};
 
 $authMiddleware = function($request, $response, $next) {
     if ($request->isPost()) {
@@ -98,6 +110,20 @@ $app->map(['GET', 'POST'], '/auth/login', 'AuthController:login')->add($authMidd
 $app->map(['GET', 'POST'], '/auth/register', 'AuthController:register')->add($authMiddleware);
 $app->get('/auth/logout', 'AuthController:logout');
 
+// Drink
+$app->get('/drink/list', 'DrinkController:list');
+$app->get('/drink/{id}/{slug}', 'DrinkController:single');
+
+// Venue
+$app->get('/venue/list', 'VenueController:list');
+$app->get('/venue/{id}/{slug}', 'VenueController:single');
+
+// Producer
+$app->get('/producer/list', 'ProducerController:list');
+$app->get('/producer/{id}/{slug}', 'ProducerController:single');
+
+// User
+$app->get('/user/home', 'UserController:home');
 
 // Run app
 $app->run();

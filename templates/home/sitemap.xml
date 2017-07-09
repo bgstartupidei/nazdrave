@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{% for item in drinks %}<url><loc>{{ domain_name }}/drink/{{ item.id }}/{{ item.name|slugify }}</loc></url>{% endfor %}
+{% for item in producers %}<url><loc>{{ domain_name }}/producer/{{ item.id }}/{{ item.name|slugify }}</loc></url>{% endfor %}
+{% for item in venues %}<url><loc>{{ domain_name }}/venue/{{ item.id }}/{{ item.name|slugify }}</loc></url>{% endfor %}
+</urlset>
