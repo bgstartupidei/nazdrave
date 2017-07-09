@@ -40,6 +40,13 @@
           </div>
           <button type="submit" class="btn btn-primary">Сипи си</button>
         </form>
+{% else %}
+  <div class="text-center">
+    <a class="btn btn-primary" href="/auth/login" rel="nofollow">Влезте</a><br/>
+    или се<br/>
+    <a class="btn btn-primary" href="/auth/register" rel="nofollow">Регистрирайте</a><br/>
+    за да използвате пълните възможности на системата.
+  </div>
 {% endif %}
     </div>
   </div>
