@@ -74,5 +74,11 @@ $container['view'] = function ($container) {
 
 // Register controllers
 $container['HomeController'] = function ($container) {
-    return new \Podcast\Controller\HomeController($container);
+    return new \Nazdrave\Controller\HomeController($container);
 };
+
+$app->get('/', 'HomeController:index');
+$app->get('/sitemap', 'HomeController:sitemap');
+
+// Run app
+$app->run();
