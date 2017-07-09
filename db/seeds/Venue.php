@@ -22,6 +22,7 @@ class Venue extends AbstractSeed
                 'image' => '',
                 'description' => 'Винаги прясна салата.',
                 'rating' => 5,
+                'created' => time(),
             ),
         );
         $posts = $this->table('venue');

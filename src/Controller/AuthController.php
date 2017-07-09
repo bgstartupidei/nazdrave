@@ -62,7 +62,7 @@ class AuthController extends BaseController {
                     $this->session->set('id', $id);
                     $this->session->set('email', $email);
                     $this->session->set('level', 0);
-                    return $response->withRedirect('/user');
+                    return $response->withRedirect('/user/home');
                 }
             } else {
                 $this->data['errors'] = $validator->getMessages();

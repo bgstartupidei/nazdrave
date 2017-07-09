@@ -24,7 +24,7 @@ class BaseModel {
         return $this->db->table($table)->where($column, $id)->first();
     }
 
-    public function getList($table) {
-        return $this->db->table($table)->get();
+    public function getList($table, $orderBy='id', $orderDirection='desc') {
+        return $this->db->table($table)->orderBy($orderBy, $orderDirection)->get();
     }
 }

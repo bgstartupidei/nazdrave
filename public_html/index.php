@@ -60,10 +60,22 @@ $container['view'] = function ($container) {
         'cache' => false, //__DIR__ . '/../cache/twig/'
     ]);
 
-    $filter = new Twig_SimpleFilter('gmdate', function ($seconds) {
+    $gmdate = new Twig_SimpleFilter('gmdate', function ($seconds) {
         return gmdate("H:i:s", $seconds);
     });
-    $view->getEnvironment()->addFilter($filter);
+    $view->getEnvironment()->addFilter($gmdate);
+
+    $gravatar = new Twig_SimpleFilter('gravatar', function($email) {
+        $size = 80;
+        $d = 'mm';
+        $r = 'g';
+        $url = 'https://www.gravatar.com/avatar/';
+        $url .= md5( strtolower( trim( $email ) ) );
+        $url .= "?s=$size&d=$d&r=$r";
+        return $url;
+    });
+    $view->getEnvironment()->addFilter($gravatar);
+
 
     // Instantiate and add Slim specific extension
     $basePath = rtrim(str_ireplace('index.php', '', $container['request']->getUri()->getBasePath()), '/');
@@ -113,6 +125,7 @@ $app->get('/auth/logout', 'AuthController:logout');
 // Drink
 $app->get('/drink/list', 'DrinkController:list');
 $app->get('/drink/{id}/{slug}', 'DrinkController:single');
+$app->post('/drink/checkin', 'DrinkController:checkIn');
 
 // Venue
 $app->get('/venue/list', 'VenueController:list');

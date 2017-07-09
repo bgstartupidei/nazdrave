@@ -24,6 +24,7 @@ class Drink extends AbstractSeed
                 'image' => '',
                 'description' => 'Домашна ракия, изпратена от дядо ти.',
                 'rating' => 5,
+                'created' => time(),
             ),
         );
         $posts = $this->table('drink');

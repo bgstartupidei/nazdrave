@@ -22,6 +22,7 @@ class Producer extends AbstractSeed
                 'image' => '',
                 'description' => 'Изба с традиции.',
                 'rating' => 5,
+                'created' => time(),
             ),
         );
         $posts = $this->table('producer');
