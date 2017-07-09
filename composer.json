@@ -1,0 +1,29 @@
+{
+    "name": "aquilax/nazdrave",
+    "description": "Untappd clone",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "aquilax",
+            "email": "aquilax@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Nazdrave\\": "src/"
+        }
+    },
+    "require": {
+        "robmorgan/phinx": "^0.6.5",
+        "php": ">=5.5.0",
+        "slim/slim": "^3.1",
+        "illuminate/database": "^5.3",
+        "slim/twig-view": "2.1.1",
+        "bryanjhv/slim-session": "^3.0",
+        "cocur/slugify": "^2.3"
+    },
+    "scripts": {
+        "start": "php -S 0.0.0.0:8080 -t public_html public_html/index.php"
+    }
+}

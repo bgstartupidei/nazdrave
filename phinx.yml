@@ -1,0 +1,18 @@
+paths:
+    migrations: %%PHINX_CONFIG_DIR%%/db/migrations
+    seeds: %%PHINX_CONFIG_DIR%%/db/seeds
+
+environments:
+    default_migration_table: phinxlog
+    default_database: production
+    production:
+        adapter: sqlite
+        name: ./data/db.sqlite3
+
+    development:
+        adapter: sqlite
+        name: ./data/development.sqlite3
+
+    testing:
+        adapter: sqlite
+        name: ./data/testing.sqlite3
