@@ -3,9 +3,9 @@
 {% block canonical %}{{domain_name}}/drink/{{ item.id }}/{{ item.title|slugify }}{% endblock %}
 
 {% block content %}
+  <h1>{{ item.name|escape }}</h1>
   <div class="row">
     <div class="col-sm-4">
-      <h2>{{ item.name|escape }}</h2>
       <img class="img-thumbnail" src="/assets/images/drink.png" alt="{{ item.name|escape }}" />
       <p>{{ item.description|escape }}</p>
     </div>
@@ -43,10 +43,12 @@
 {% endif %}
     </div>
   </div>
+{% if not checkins is empty %}
   <div class="row">
     <div class="col-sm-12">
       <h2>Последна активност</h2>
       {{ include('_partials/checkins.html') }}
     </div>
   </div>
+{% endif %}
 {% endblock %}
