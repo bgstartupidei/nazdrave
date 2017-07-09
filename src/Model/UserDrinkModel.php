@@ -20,16 +20,19 @@ class UserDrinkModel extends BaseModel {
         return $this->db->table($this->getTableName())->insertGetId($data);
     }
 
-    public function getLatestCheckins($drinkId, $count) {
+    public function getLatestCheckins($filterField, $filterValue, $count) {
         return $this->db->table($this->getTableName())
-            ->select('user_drink.*', 'user.email', 'venue.name as venue_name')
+            ->select('user_drink.*', 'user.email', 'venue.name as venue_name', 'drink.name as drink_name')
+            ->leftJoin('drink', function ($join) {
+                $join->on('user_drink.drink_id', '=', 'drink.id');
+            })
             ->leftJoin('user', function ($join) {
                 $join->on('user_drink.user_id', '=', 'user.id');
             })
             ->leftJoin('venue', function ($join) {
                 $join->on('user_drink.venue_id', '=', 'venue.id');
             })
-            ->where('drink_id', $drinkId)
+            ->where($filterField, $filterValue)
             ->orderBy('created', 'desc')
             ->get();
     }

@@ -3,6 +3,14 @@
 {% block canonical %}{{domain_name}}/user/home{% endblock %}
 
 {% block content %}
-  <h2>{{ page_title }}</h2>
-  <p>Home is where rakia and salata is.</p>
+  <div class="jumbotron" style="background: url(/assets/images/front-page.jpg) no-repeat top center; min-height:340px; color:#fff">
+    <p class="text-center"><img height="120" class="circle" style="border: 2px solid #cecece" src="{{ gravatar(email, 120)  }}" /></p>
+    <h2 class="text-center" style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">Home is where rakia and salata is.</h2>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>Последна активност</h2>
+      {{ include('_partials/checkins.html') }}
+    </div>
+  </div>
 {% endblock %}

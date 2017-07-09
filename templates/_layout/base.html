@@ -8,6 +8,11 @@
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
     <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <style type="text/css">
+      .circle {
+        object-fit: cover;
+        border-radius:50%;
+      }
     </style>
     {% block header %}{% endblock %}
 </html>
@@ -34,7 +39,8 @@
             <a class="nav-link nav-link" href="/producer/list">Производители</a>
             <a class="nav-link nav-link" href="/venue/list">Заведения</a>
             {% if logged %}
-            <a class="nav-link nav-link" href="/user/home" rel="nofollow"><img height="30" src="{{ email|gravatar }}" /> {{ email }}</a>
+            <img height="40" class="circle" src="{{ gravatar(email, 40) }}" style="border: 1px solid #cecece" />
+            <a class="nav-link nav-link" href="/user/home" rel="nofollow">{{ email }}</a>
             <a class="nav-link nav-link" href="/auth/logout" rel="nofollow">Изход</a>
             {% else %}
             <a class="nav-link nav-link" href="/auth/login" rel="nofollow">Вход</a>

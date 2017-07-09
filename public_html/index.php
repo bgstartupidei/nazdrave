@@ -65,8 +65,7 @@ $container['view'] = function ($container) {
     });
     $view->getEnvironment()->addFilter($gmdate);
 
-    $gravatar = new Twig_SimpleFilter('gravatar', function($email) {
-        $size = 80;
+    $gravatar = new Twig_SimpleFunction('gravatar', function($email, $size=80) {
         $d = 'mm';
         $r = 'g';
         $url = 'https://www.gravatar.com/avatar/';
@@ -74,7 +73,7 @@ $container['view'] = function ($container) {
         $url .= "?s=$size&d=$d&r=$r";
         return $url;
     });
-    $view->getEnvironment()->addFilter($gravatar);
+    $view->getEnvironment()->addFunction($gravatar);
 
 
     // Instantiate and add Slim specific extension

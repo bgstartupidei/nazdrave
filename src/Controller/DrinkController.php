@@ -33,7 +33,7 @@ class DrinkController extends BaseController {
         $venueModel = new VenueModel($this->ci);
         $this->data['venues'] = $venueModel->getList($venueModel->getTableName(), 'name', 'asc');
         $userDrinkModel = new UserDrinkModel($this->ci);
-        $this->data['checkins'] = $userDrinkModel->getLatestCheckins($drink->id, self::LATEST_CHECKINS_COUNT);
+        $this->data['checkins'] = $userDrinkModel->getLatestCheckins('drink_id', $drink->id, self::LATEST_CHECKINS_COUNT);
         $this->data['page_title'] = $drink->name;
         $this->data['item'] = $drink;
         return $this->render($response, 'drink/single.html', $this->data);

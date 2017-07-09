@@ -1,0 +1,16 @@
+{% for checkin in checkins %}
+      <div id="c{{ checkin.id }}" class="checkin row">
+        <div class="col-sm-1">
+          <img height="80" class="circle" src="{{ gravatar(checkin.email, 80)  }}" />
+        </div>
+        <div class="col-sm-11">
+          <a href="/drink/{{ checkin.drink_id }}/{{ checkin.drink_name | slugify }}">{{ checkin.drink_name | escape}}</a>
+{% if checkin.venue_name %}
+          <a href="/venue/{{ checkin.venue_id }}/{{ checkin.venue_name | slugify }}">{{ checkin.venue_name | escape }}</a>
+{% endif %}
+          @ <time>{{ checkin.created | date('Y-m-d H:i') }}</time>
+          <p>{{ checkin.description | escape }}</p>
+        </div>
+      </div>
+      <hr />
+{% endfor %}
