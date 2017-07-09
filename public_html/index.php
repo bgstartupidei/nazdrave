@@ -76,9 +76,28 @@ $container['view'] = function ($container) {
 $container['HomeController'] = function ($container) {
     return new \Nazdrave\Controller\HomeController($container);
 };
+$container['AuthController'] = function ($container) {
+    return new \Nazdrave\Controller\AuthController($container);
+};
 
+$authMiddleware = function($request, $response, $next) {
+    if ($request->isPost()) {
+        if ($request->getParam('name')) {
+            return $response->withStatus(501);
+        }
+    }
+    return $next($request, $response);
+};
+
+// Home
 $app->get('/', 'HomeController:index');
 $app->get('/sitemap', 'HomeController:sitemap');
+
+// Auth
+$app->map(['GET', 'POST'], '/auth/login', 'AuthController:login')->add($authMiddleware);
+$app->map(['GET', 'POST'], '/auth/register', 'AuthController:register')->add($authMiddleware);
+$app->get('/auth/logout', 'AuthController:logout');
+
 
 // Run app
 $app->run();

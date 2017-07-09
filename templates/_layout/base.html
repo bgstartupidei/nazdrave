@@ -30,14 +30,12 @@
         <a class="navbar-brand" href="/">{{ site_name }}</a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link" href="/channel/list">All shows</a>
-            <a class="nav-link nav-link" href="/calendar">Calendar</a>
             {% if logged %}
             <a class="nav-link nav-link" href="/user" rel="nofollow">{{ email }}</a>
-            <a class="nav-link nav-link" href="/auth/logout" rel="nofollow">Logout</a>
+            <a class="nav-link nav-link" href="/auth/logout" rel="nofollow">Изход</a>
             {% else %}
-            <a class="nav-link nav-link" href="/auth/login" rel="nofollow">Login</a>
-            <a class="nav-link nav-link" href="/auth/register" rel="nofollow">Register</a>
+            <a class="nav-link nav-link" href="/auth/login" rel="nofollow">Вход</a>
+            <a class="nav-link nav-link" href="/auth/register" rel="nofollow">Регистрация</a>
             {% endif %}
           </div>
         </div>

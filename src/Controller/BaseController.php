@@ -23,6 +23,7 @@ class BaseController {
         $this->data['logged'] = false;
         $this->data['user_id'] = 0;
         $this->data['email'] = 0;
+        $this->data['level'] = 0;
         $this->data['site_name'] = __('Наздраве');
         $this->data['title'] = __('Наздраве');
         $this->data['page_title'] = '';
@@ -32,6 +33,7 @@ class BaseController {
             $this->data['logged'] = $this->logged;
             $this->data['user_id'] = intval($user_id);
             $this->data['email'] = $this->session->get('email');
+            $this->data['level'] = $this->session->get('level');
         }
     }
 
