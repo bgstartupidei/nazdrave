@@ -1,11 +1,14 @@
 {% extends "_layout/base.html" %}
 
-{% block canonical %}{{domain_name}}/producer/{{ item.id }}/{{ item.title|slugify }}{% endblock %}
+{% block canonical %}{{domain_name}}/producer/{{ item.id }}/{{ item.name|slugify }}{% endblock %}
 
 {% block content %}
   <h2>{{ item.name|escape }}</h2>
   <div class="row">
     <div class="col-sm-12">
+{% if item.url %}
+      <p><strong>Официална страница</strong>: <a href="{{ item.url }}" rel="nofollow">{{ item.url }}</a></p>
+{% endif %}
       <p>{{ item.description|escape }}</p>
     </div>
   </div>
