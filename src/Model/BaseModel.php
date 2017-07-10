@@ -27,4 +27,13 @@ class BaseModel {
     public function getList($table, $orderBy='id', $orderDirection='desc') {
         return $this->db->table($table)->orderBy($orderBy, $orderDirection)->get();
     }
+
+    public function update($id, $data, $tableName=null) {
+        $tableName = $tableName ? $tableName : $this->getTableName();
+        if ($id) {
+            $this->db->table($tableName)->where('id', $id)->update($data);
+            return $id;
+        }
+        return $this->db->table($tableName)->insertGetId($data);
+    }
 }

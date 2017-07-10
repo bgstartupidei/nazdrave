@@ -1,2 +1,5 @@
 /vendor/
 /data/*
+/public_html/assets/images/drink/*
+/public_html/assets/images/producer/*
+/public_html/assets/images/venue/*

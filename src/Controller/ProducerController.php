@@ -28,4 +28,27 @@ class ProducerController extends BaseController {
         return $this->render($response, 'producer/single.html', $this->data);
     }
 
+    public function update(Request $request, Response $response, Array $args) {
+        $id = intval($request->getParam('id'));
+        $name = $request->getParam('name');
+        $url = $request->getParam('url');
+        $description = $request->getParam('description');
+        $image = $request->getParam('image');
+
+        $slug = $this->ci->get('slugify')->slugify($name);
+        $newImage = $this->handleUpload($request, $slug, UPLOAD_BASE . '/producer');
+        $image = $newImage ? $newImage : $image;
+
+        $data = array(
+            'name' => $name,
+            'url' => $url,
+            'description' => $description,
+            'image' => $image,
+            'updated' => time(),
+        );
+        $producerModel = new ProducerModel($this->ci);
+        $producerModel->update($id, $data);
+        return $response->withRedirect('/producer/' . $id . '/' .$slug, 302);
+    }
+
 }

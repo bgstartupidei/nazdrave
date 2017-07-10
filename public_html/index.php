@@ -19,6 +19,8 @@ function __($text) {
 }
 
 define('BASE_DIR', realpath(__DIR__ . '/../'));
+define('UPLOAD_BASE', BASE_DIR . '/public_html/assets/images');
+define('IMAGE_BASE', '/assets/images');
 
 // Instantiate the app
 $settings = require BASE_DIR . '/settings/settings.php';
@@ -54,6 +56,11 @@ session_set_save_handler($sessionHandler, true);
 $container['session'] = function ($c) {
     return new \SlimSession\Helper;
 };
+
+$container['slugify'] = function ($c) {
+    return new \Cocur\Slugify\Slugify();
+};
+
 
 $container['view'] = function ($container) {
     $view = new \Slim\Views\Twig($container['settings']['renderer']['template_path'], [
@@ -133,6 +140,7 @@ $app->get('/venue/{id}/{slug}', 'VenueController:single');
 // Producer
 $app->get('/producer/list', 'ProducerController:list');
 $app->get('/producer/{id}/{slug}', 'ProducerController:single');
+$app->post('/producer/update', 'ProducerController:update');
 
 // User
 $app->get('/user/home', 'UserController:home');
