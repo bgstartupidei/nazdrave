@@ -4,21 +4,21 @@
 
 {% block content %}
   <h2>{{ page_title }}</h2>
-  <div class="list">
+  <div class="search-list">
     <input type="text" class="form-control search" placeholder="Търсене..." autofocus="autofocus" />
     <br/>
     <ol class="list">
       {% for item in list %}
         <li>
-          <a clas="item" href="/drink/{{ item.id }}/{{ item.name|slugify }}">{{ item.name|escape }}</a>
+          <a class="name" href="/drink/{{ item.id }}/{{ item.name|slugify }}">{{ item.name|escape }}</a>
         </li>
       {% endfor %}
     </ol>
   </div>
   <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
   <script type="text/javascript">
-  var channelList = new List('list', {
-    valueNames: ['item']
+  new List('search-list', {
+    valueNames: ['name']
   });
   </script>
 {% endblock %}
