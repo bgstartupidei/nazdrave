@@ -50,7 +50,7 @@ class ProducerController extends BaseController {
             'updated' => time(),
         );
         $producerModel = new ProducerModel($this->ci);
-        $producerModel->update($id, $data);
+        $id = $producerModel->update($id, $data);
         return $response->withRedirect('/producer/' . $id . '/' .$slug, 302);
     }
 }

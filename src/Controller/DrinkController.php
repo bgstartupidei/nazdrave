@@ -98,7 +98,7 @@ class DrinkController extends BaseController {
             'updated' => time(),
         );
         $drinkModel = new DrinkModel($this->ci);
-        $drinkModel->update($id, $data);
+        $id = $drinkModel->update($id, $data);
         return $response->withRedirect('/drink/' . $id . '/' .$slug, 302);
     }
 }
