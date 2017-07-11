@@ -29,6 +29,9 @@ class ProducerController extends BaseController {
     }
 
     public function update(Request $request, Response $response, Array $args) {
+        if ($this->data['level'] < 100) {
+            return $response->withStatus(403);
+        }
         $id = intval($request->getParam('id'));
         $name = $request->getParam('name');
         $url = $request->getParam('url');
@@ -50,5 +53,4 @@ class ProducerController extends BaseController {
         $producerModel->update($id, $data);
         return $response->withRedirect('/producer/' . $id . '/' .$slug, 302);
     }
-
 }

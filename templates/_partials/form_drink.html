@@ -1,0 +1,32 @@
+<form action="/drink/update" method="post" enctype="multipart/form-data">
+  <input type="hidden" name="id" value="{{ item.id }}">
+  <legend>Напитка</legend>
+  <div class="form-group">
+    <label for="name">Име</label>
+    <input class="form-control" id="name" name="name" value="{{ item.name }}" />
+  </div>
+  <div class="form-group">
+    <label for="producer_id">Производител</label>
+    <input class="form-control" id="producer_id" name="producer_id" value="{{ item.producer_id }}" />
+  </div>
+  <div class="form-group">
+    <label for="url">URL</label>
+    <input class="form-control" id="url" name="url" value="{{ item.url }}" />
+  </div>
+  <div class="form-group">
+    <label for="barcode">Баркод</label>
+    <input class="form-control" id="barcode" name="barcode" value="{{ item.barcode }}" />
+  </div>
+  <div class="form-group">
+    <label for="description">Описание</label>
+    <textarea class="form-control" id="description" name="description" rows="5">{{ item.description }}</textarea>
+  </div>
+  <div class="form-group">
+    <label for="image">Изображение</label>
+    <input class="form-control" id="image" name="image" value="{{ item.image }}" />
+  </div>
+  <div class="form-group">
+    <input type="file" name="file"/>
+  </div>
+  <button type="submit" class="btn btn-primary">Запис</button>
+</form>

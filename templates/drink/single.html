@@ -58,4 +58,10 @@
     </div>
   </div>
 {% endif %}
+
+{% if level >= 100 %}
+  <hr/>
+  {% include '_partials/form_drink.html' %}
+{% endif %}
+
 {% endblock %}
