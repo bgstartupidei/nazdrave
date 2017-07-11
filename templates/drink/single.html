@@ -5,11 +5,14 @@
 {% block content %}
   <h1>{{ item.name|escape }}</h1>
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-6">
+{% if item.image %}
+      <img class="img-thumbnail" src="/assets/images/drink/{{ item.image | raw }}" alt="{{ item.name|escape }}" />
+{% else %}
       <img class="img-thumbnail" src="/assets/images/drink.png" alt="{{ item.name|escape }}" />
-      <p>{{ item.description|escape }}</p>
+{% endif %}
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-6">
 {% if logged %}
         <form method="post" action="/drink/checkin">
           <legend>Пийваш ли сега</legend>
@@ -50,6 +53,19 @@
 {% endif %}
     </div>
   </div>
+  <div class="row">
+    <div class="col">
+{% if item.producer_id %}
+      <p><strong>Производител</strong>: <a href="/producer/{{ item.producer_id }}/{{ item.producer_name | slugify }}">{{ item.producer_name }}</a></p>
+{% endif %}
+{% if item.barcode %}
+      <p><strong>Баркод</strong>: {{ item.barcode }}</p>
+{% endif %}
+      <p><strong>Рейтинг</strong>: {{ item.rating }}</p>
+      <p>{{ item.description|escape }}</p>
+    </div>
+  </div>
+
 {% if not checkins is empty %}
   <div class="row">
     <div class="col-sm-12">

@@ -7,7 +7,12 @@
   </div>
   <div class="form-group">
     <label for="producer_id">Производител</label>
-    <input class="form-control" id="producer_id" name="producer_id" value="{{ item.producer_id }}" />
+    <select name="producer_id" class="form-control" id="producer_id">
+      <option value="0" selected="selected">Избери ...</option>
+{% for producer in producers %}
+      <option value="{{ producer.id }}" {% if producer.id == item.producer_id %} selected="selected"{% endif %}>{{ producer.name | escape}}</option>
+{% endfor %}
+    </select>
   </div>
   <div class="form-group">
     <label for="url">URL</label>

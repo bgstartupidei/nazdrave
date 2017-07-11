@@ -132,6 +132,7 @@ $app->get('/auth/logout', 'AuthController:logout');
 $app->get('/drink/list', 'DrinkController:list');
 $app->get('/drink/{id}/{slug}', 'DrinkController:single');
 $app->post('/drink/checkin', 'DrinkController:checkIn');
+$app->post('/drink/update', 'DrinkController:update');
 
 // Venue
 $app->get('/venue/list', 'VenueController:list');

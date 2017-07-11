@@ -9,6 +9,7 @@ use Slim\Http\Response;
 use Nazdrave\Model\DrinkModel;
 use Nazdrave\Model\UserDrinkModel;
 use Nazdrave\Model\VenueModel;
+use Nazdrave\Model\ProducerModel;
 
 
 class DrinkController extends BaseController {
@@ -32,6 +33,8 @@ class DrinkController extends BaseController {
         }
         $venueModel = new VenueModel($this->ci);
         $this->data['venues'] = $venueModel->getList($venueModel->getTableName(), 'name', 'asc');
+        $producerModel = new ProducerModel($this->ci);
+        $this->data['producers'] = $producerModel->getList($producerModel->getTableName(), 'name', 'asc');
         $userDrinkModel = new UserDrinkModel($this->ci);
         $this->data['checkins'] = $userDrinkModel->getLatestCheckins('drink_id', $drink->id, self::LATEST_CHECKINS_COUNT);
         $this->data['page_title'] = $drink->name;
@@ -67,5 +70,35 @@ class DrinkController extends BaseController {
             }
         }
         return $response->withRedirect('/', 302);
+    }
+
+    public function update(Request $request, Response $response, Array $args) {
+        if ($this->data['level'] < 100) {
+            return $response->withStatus(403);
+        }
+        $id = intval($request->getParam('id'));
+        $name = $request->getParam('name');
+        $producerId = $request->getParam('producer_id');
+        $barcode = $request->getParam('barcode');
+        $url = $request->getParam('url');
+        $description = $request->getParam('description');
+        $image = $request->getParam('image');
+
+        $slug = $this->ci->get('slugify')->slugify($name);
+        $newImage = $this->handleUpload($request, $slug, UPLOAD_BASE . '/drink');
+        $image = $newImage ? $newImage : $image;
+
+        $data = array(
+            'name' => $name,
+            'producer_id' => $producerId,
+            'url' => $url,
+            'barcode' => $barcode,
+            'description' => $description,
+            'image' => $image,
+            'updated' => time(),
+        );
+        $drinkModel = new DrinkModel($this->ci);
+        $drinkModel->update($id, $data);
+        return $response->withRedirect('/drink/' . $id . '/' .$slug, 302);
     }
 }
